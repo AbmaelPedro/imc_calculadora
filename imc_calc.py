@@ -4,11 +4,11 @@ from PyQt5.QtWidgets import ( # importação das classes da biblioteca
 )
 from PyQt5.QtGui import QFont # aqui importa a fonte
 
-class IMC_Calc(QWidget): # Classe IMC_Calc instanciada.
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-
+class IMC_Calc(QWidget): # Classe IMC_Calc instanciada.-------------- INICIO DA CLASSE --------------
+    def __init__(self):                                                                                                                     
+        super().__init__()                                                         
+        self.init_ui()                                                             
+                                                                                   
     def init_ui(self):
         self.setWindowTitle("Calculadora de IMC") # Título da janela 
         self.setFixedSize(400, 300)  # Fixa o tamanho da janela
@@ -59,18 +59,18 @@ class IMC_Calc(QWidget): # Classe IMC_Calc instanciada.
             peso_kg_input = float(self.peso_kg_input.text().replace(",", "."))
             altura_mt_input = float(self.altura_mt_input.text().replace(",", "."))
 
-         #-------------------------fazer o calculo de imc--------------------------
-
+         #-------------------------------- calculo de imc--------------------------
+        
 
 
 
          #-------------------------------------------------------------------------
         except ValueError:
             QMessageBox.warning(self, "Erro", "Por favor, insira valores válidos.")
-
+#----------------------------------------------------------------------------FIM DA INSTÂNCIA -----------
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = ICMSCalculator()
+    window = IMC_Calc()
     window.show()
     sys.exit(app.exec_())
 
