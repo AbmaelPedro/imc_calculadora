@@ -10,8 +10,8 @@ class IMC_Calc(QWidget): # Classe IMC_Calc instanciada.-------------- INICIO DA 
         self.init_ui()                                                             
                                                                                    
     def init_ui(self):
-        self.setWindowTitle("Calculadora de IMC") # Título da janela 
-        self.setFixedSize(400, 300)  # Fixa o tamanho da janela
+        self.setWindowTitle("Calculadora de IMC") # TÍTLO DA JANELA 
+        self.setFixedSize(400, 300)  # TAMANHO DA JANELA FIXA - NÃO REDIMENSIONA
 
         # Layout principal
         layout = QVBoxLayout()
@@ -55,19 +55,45 @@ class IMC_Calc(QWidget): # Classe IMC_Calc instanciada.-------------- INICIO DA 
 
     def calcular(self):
         try:
-            # Obter valores dos campos (aceitar vírgula como separador decimal) ficou show!!
+            # RECEBE VALORES DOS CAMPOS (aceitar vírgula como separador decimal) ficou show!!
             peso_kg_input = float(self.peso_kg_input.text().replace(",", "."))
             altura_mt_input = float(self.altura_mt_input.text().replace(",", "."))
+            result = float
+            situation = str
 
-         #-------------------------------- calculo de imc--------------------------
-        
-
-
-
-         #-------------------------------------------------------------------------
+         #-------------------------------- CALCULO DE IMC E CONDIÇÕES --------------------------
+            result = peso_kg_input/(altura_mt_input**2)
+            if result < 16:
+                situation = "Você está com Magreza grave" 
+            elif result >= 16 and result < 17:
+                situation = "Você está com Magreza moderada"
+            elif result >= 17 and result < 18.5:
+                situation = "Você está com Mageza leve"
+            elif result >= 18.5 and result < 25:
+                situation = "Você está Saudável, parabéns!"
+            elif result >= 25 and result < 30:
+                situation = "Você está com Sobrepeso"
+            elif result >= 30 and result < 35:
+                situation = "Você está com Obesidade grau 1"
+            elif result >= 35 and result < 40:
+                situation = "Você está com Obesidade grau 2"
+            else:
+                situation = "Você está com Obesidade grau 3"
+        #---------------------------FIM CALCULO E CONDIÇÕES---------------------------------------   
+            self.resultado_label.setText(
+                f"Resultado: \n"
+                f"{situation}" 
+            )
+      
         except ValueError:
             QMessageBox.warning(self, "Erro", "Por favor, insira valores válidos.")
 #----------------------------------------------------------------------------FIM DA INSTÂNCIA -----------
+    # FUNÇÃO LIMPAR CAMPOS
+    def limpar_campos(self):
+        self.peso_kg_input.clear()
+        self.altura_mt_input.clear()
+        self.resultado_label.setText("Resultado: ")
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = IMC_Calc()
